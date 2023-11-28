@@ -143,7 +143,8 @@ public class GrilleDeJeu {
               }
         }
     
-    
+        }
     return this;
     }
+}
 
