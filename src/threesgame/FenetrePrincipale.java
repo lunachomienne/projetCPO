@@ -5,6 +5,7 @@
 package threesgame;
 
 import java.awt.GridLayout;
+import java.util.Random;
 import javax.swing.JButton;
 
 /**
@@ -16,20 +17,42 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     /**
      * Creates new form FenetrePrincipale
      */
+    GrilleDeJeu grille;
     
-    
-    
+    public void InitialiserPartie(){
+        
+        grille.GrilleDepart();
+        
+    }
     public FenetrePrincipale() {
+        
         initComponents();
         //CelluleChiffree cellule;
-        
+        int rand;
+        this.grille= new GrilleDeJeu();
+        InitialiserPartie();
+        Random random = new Random();
+        rand=random.nextInt(4) + 1;
         GrilleJeu.setLayout(new GridLayout(4, 4));
+        
         for (int i=0; i < 4; i++) {
             for (int j=0; j < 4; j++ ) {
-            CelluleGraphique bouton_cellule = new CelluleGraphique();
+            CelluleGraphique bouton_cellule = new CelluleGraphique(grille.matriceCellules[i][j]);
+            if(j==rand){
+                bouton_cellule.valeur=random.nextInt(3) + 1;
+                bouton_cellule.setText(""+bouton_cellule.valeur);
+                rand=random.nextInt(4)+1;
+                
+            }
+            if (i==rand){
+                bouton_cellule.valeur=random.nextInt(3) + 1;
+                bouton_cellule.setText(""+ bouton_cellule.valeur);
+                rand=random.nextInt(4)+1; 
+            }
             GrilleJeu.add(bouton_cellule); // ajout au Jpanel PanneauGrille
-     }
-    }
+            }        
+        }
+        
     }
 
     /**
@@ -43,10 +66,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         GrilleJeu = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        downButton = new javax.swing.JButton();
+        upButton = new javax.swing.JButton();
+        rightButton = new javax.swing.JButton();
+        leftButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(443, 542));
@@ -54,41 +77,58 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         GrilleJeu.setBackground(new java.awt.Color(102, 204, 255));
         GrilleJeu.setLayout(new java.awt.GridLayout());
 
-        jButton5.setText("jButton5");
+        downButton.setText("down");
+        downButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downButtonActionPerformed(evt);
+            }
+        });
 
-        jButton6.setText("jButton6");
+        upButton.setText("up");
 
-        jButton1.setText("jButton1");
+        rightButton.setText("-->");
+        rightButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rightButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        leftButton.setText("<--");
+        leftButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leftButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addContainerGap()
+                .addComponent(leftButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(rightButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(downButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(upButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(upButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(rightButton)
+                    .addComponent(leftButton))
                 .addGap(18, 18, 18)
-                .addComponent(jButton6)
+                .addComponent(downButton)
                 .addGap(23, 23, 23))
         );
 
@@ -101,23 +141,40 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(GrilleJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(GrilleJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(GrilleJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(132, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
+        // TODO add your handling code here:
+        this.grille.deplacementG();
+        repaint();
+        
+    }//GEN-LAST:event_leftButtonActionPerformed
+
+    private void rightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightButtonActionPerformed
+        // TODO add your handling code here:
+        this.grille.deplacementD();
+        repaint();
+    }//GEN-LAST:event_rightButtonActionPerformed
+
+    private void downButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_downButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,10 +213,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel GrilleJeu;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton downButton;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton leftButton;
+    private javax.swing.JButton rightButton;
+    private javax.swing.JButton upButton;
     // End of variables declaration//GEN-END:variables
 }
