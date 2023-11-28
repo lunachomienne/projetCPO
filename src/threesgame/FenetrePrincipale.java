@@ -85,6 +85,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
 
         upButton.setText("up");
+        upButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upButtonActionPerformed(evt);
+            }
+        });
 
         rightButton.setText("-->");
         rightButton.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +180,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void downButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_downButtonActionPerformed
+
+    private void upButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upButtonActionPerformed
+        // TODO add your handling code here:
+        this.grille.deplacementUp();
+        repaint();
+    }//GEN-LAST:event_upButtonActionPerformed
 
     /**
      * @param args the command line arguments
