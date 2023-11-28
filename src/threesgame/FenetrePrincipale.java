@@ -39,14 +39,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             for (int j=0; j < 4; j++ ) {
             CelluleGraphique bouton_cellule = new CelluleGraphique(grille.matriceCellules[i][j]);
             if(j==rand){
-                bouton_cellule.valeur=random.nextInt(3) + 1;
-                bouton_cellule.setText(""+bouton_cellule.valeur);
+                bouton_cellule.celluleChiffreeAssociee.valeur=random.nextInt(3) + 1;
+                bouton_cellule.setText(""+bouton_cellule.celluleChiffreeAssociee.valeur);
                 rand=random.nextInt(4)+1;
                 
             }
             if (i==rand){
-                bouton_cellule.valeur=random.nextInt(3) + 1;
-                bouton_cellule.setText(""+ bouton_cellule.valeur);
+                bouton_cellule.celluleChiffreeAssociee.valeur=random.nextInt(3) + 1;
+                bouton_cellule.setText(""+ bouton_cellule.celluleChiffreeAssociee.valeur);
                 rand=random.nextInt(4)+1; 
             }
             GrilleJeu.add(bouton_cellule); // ajout au Jpanel PanneauGrille
