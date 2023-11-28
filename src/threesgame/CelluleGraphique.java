@@ -14,25 +14,22 @@ import javax.swing.JButton;
  * @author lunac
  */
 public class CelluleGraphique extends JButton {
-    
+  
+ CelluleChiffree celluleChiffreeAssociee;
  int largeur; // largeur en pixel de la cellule
  int hauteur; // hauteur en pixel de la cellule
  int valeur;
   
  // constructeur (appelé depuis FenetrePrincipale)
  
- public CelluleGraphique() {
- this.largeur = 3;
- this.hauteur = 5;
- Random random = new Random();
- valeur=random.nextInt(3) + 1;
+ public CelluleGraphique(CelluleChiffree cellule) {
+    celluleChiffreeAssociee=cellule;
+    this.largeur = 3;
+    this.hauteur = 5;
+    valeur =0;
  
  }
  
- public void addCell(CelluleGraphique cell){
-     if (valeur==1){
-         
-     }
- }
+ 
  
 }
