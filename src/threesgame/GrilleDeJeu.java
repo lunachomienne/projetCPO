@@ -55,22 +55,28 @@ public class GrilleDeJeu {
     public GrilleDeJeu deplacementG(){
         for (int i=0; i<4; i++){
             for (int j=0; j<4; j++){
-                if (j==1 || j==2){
+                if (j==1){
                     if (matriceCellules[i][j].valeur==matriceCellules[i][j+1].valeur){
                         matriceCellules[i][j].valeur=2*matriceCellules[i][j].valeur;
-                        matriceCellules[i][j].valeur=matriceCellules[i][j-1].valeur;
+                        matriceCellules[i][j+1].valeur=matriceCellules[i][j+2].valeur;
                     }  
                 } 
                 if (j==0){
                     if (matriceCellules[i][j].valeur==matriceCellules[i][j+1].valeur){
                         matriceCellules[i][j].valeur=2*matriceCellules[i][j].valeur;
-                        
+                        matriceCellules[i][j+1].valeur=matriceCellules[i][j+2].valeur;
                     }
                 }
-                if (j==4){
+                if (j==3){
                     if (matriceCellules[i][j-1].valeur==matriceCellules[i][j].valeur){
                         matriceCellules[i][j-1].valeur=2*matriceCellules[i][j-1].valeur;
-                        matriceCellules[i][j].valeur=matriceCellules[i][j-1].valeur;
+                        matriceCellules[i][j].valeur=0;
+                    }
+                }
+                if (j==2){
+                    if (matriceCellules[i][j].valeur==matriceCellules[i][j+1].valeur){
+                        matriceCellules[i][j].valeur=2*matriceCellules[i][j].valeur;
+                        matriceCellules[i][j+1].valeur=0;
                     }
                 }
             }
@@ -96,7 +102,7 @@ public class GrilleDeJeu {
                         
                     }
                 }
-                if (j==4){
+                if (j==3){
                     if (matriceCellules[i][j-1].valeur==matriceCellules[i][j].valeur){
                         matriceCellules[i][j].valeur=2*matriceCellules[i][j-1].valeur;
                         matriceCellules[i][j-1].valeur=matriceCellules[i][j-2].valeur;
@@ -107,5 +113,37 @@ public class GrilleDeJeu {
         GrilleDeJeu grille=this.AjoutCase();
         return grille;
     }
-}
+    
+    public GrilleDeJeu deplacementUp(){
+        for (int i=0; i<4; i++){
+          for (int j=0; j<4; j++){
+              if (i==1){
+                  if (matriceCellules[i][j].valeur==matriceCellules[i+1][j].valeur){
+                      matriceCellules[i][j].valeur=2*matriceCellules[i+1][j].valeur;
+                      matriceCellules[i+1][j].valeur=matriceCellules[i+2][j].valeur;
+                     }
+              }
+              if (i==0){
+                  if (matriceCellules[i+1][j].valeur==matriceCellules[i][j].valeur){
+                      matriceCellules[i][j].valeur=2*matriceCellules[i][j].valeur;
+                      matriceCellules[i+1][j].valeur=matriceCellules[i+2][j].valeur;
+                    }
+              }
+              if (i==2){
+                  if (matriceCellules[i][j].valeur==matriceCellules[i+1][j].valeur){
+                      matriceCellules[i][j].valeur=2*matriceCellules[i][j].valeur;
+                      matriceCellules[i+1][j].valeur=0;
+                  }
+             }
+              if (i==3){
+                  if (matriceCellules[i][j].valeur==matriceCellules[i-1][j].valeur){
+                      matriceCellules[i-1][j].valeur=2*matriceCellules[i][j].valeur;
+                      matriceCellules[i][j].valeur=0;
+                  }
+              }
+        }
+    
+    
+    return this;
+    }
 
