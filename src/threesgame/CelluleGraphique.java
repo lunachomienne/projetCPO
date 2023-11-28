@@ -18,7 +18,7 @@ public class CelluleGraphique extends JButton {
  CelluleChiffree celluleChiffreeAssociee;
  int largeur; // largeur en pixel de la cellule
  int hauteur; // hauteur en pixel de la cellule
- int valeur;
+ 
   
  // constructeur (appelé depuis FenetrePrincipale)
  
@@ -26,10 +26,15 @@ public class CelluleGraphique extends JButton {
     celluleChiffreeAssociee=cellule;
     this.largeur = 3;
     this.hauteur = 5;
-    valeur =0;
+    celluleChiffreeAssociee.valeur =0;
  
  }
  
+ @Override
+ protected void paintComponent(Graphics g){
+     super.paintComponents(g);
+     this.setText(""+celluleChiffreeAssociee.valeur);
+ }
  
  
 }
