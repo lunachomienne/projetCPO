@@ -32,8 +32,10 @@ public class CelluleGraphique extends JButton {
  
  @Override
  protected void paintComponent(Graphics g){
-     super.paintComponents(g);
-     this.setText(""+celluleChiffreeAssociee.valeur);
+     super.paintComponent(g);
+     if (celluleChiffreeAssociee.valeur!=0){
+        this.setText(""+celluleChiffreeAssociee.valeur);
+     }
  }
  
  

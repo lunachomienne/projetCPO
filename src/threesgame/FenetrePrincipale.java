@@ -18,6 +18,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      * Creates new form FenetrePrincipale
      */
     GrilleDeJeu grille;
+    int nbCoups=0;
     
     public void InitialiserPartie(){
         
@@ -40,14 +41,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             CelluleGraphique bouton_cellule = new CelluleGraphique(grille.matriceCellules[i][j]);
             if(j==rand){
                 bouton_cellule.celluleChiffreeAssociee.valeur=random.nextInt(3) + 1;
-                bouton_cellule.setText(""+bouton_cellule.celluleChiffreeAssociee.valeur);
-                rand=random.nextInt(4)+1;
+                if (bouton_cellule.celluleChiffreeAssociee.valeur!=0){
+                    bouton_cellule.setText(""+bouton_cellule.celluleChiffreeAssociee.valeur);
+                    rand=random.nextInt(4)+1;
+                }
                 
             }
             if (i==rand){
                 bouton_cellule.celluleChiffreeAssociee.valeur=random.nextInt(3) + 1;
-                bouton_cellule.setText(""+ bouton_cellule.celluleChiffreeAssociee.valeur);
-                rand=random.nextInt(4)+1; 
+                if (bouton_cellule.celluleChiffreeAssociee.valeur!=0){
+                    bouton_cellule.setText(""+ bouton_cellule.celluleChiffreeAssociee.valeur);
+                    rand=random.nextInt(4)+1; 
+                }
             }
             GrilleJeu.add(bouton_cellule); // ajout au Jpanel PanneauGrille
             }        
@@ -70,6 +75,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         upButton = new javax.swing.JButton();
         rightButton = new javax.swing.JButton();
         leftButton = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(443, 542));
@@ -137,15 +143,22 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
 
+        jCheckBox1.setText("jCheckBox1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(GrilleJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(GrilleJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -158,7 +171,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(179, 179, 179)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(jCheckBox1)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -166,6 +181,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
         // TODO add your handling code here:
+        nbCoups+=1;
         this.grille.deplacementG();
         repaint();
         
@@ -173,16 +189,19 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     private void rightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightButtonActionPerformed
         // TODO add your handling code here:
+        nbCoups+=1;
         this.grille.deplacementD();
         repaint();
     }//GEN-LAST:event_rightButtonActionPerformed
 
     private void downButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downButtonActionPerformed
         // TODO add your handling code here:
+        nbCoups+=1;
     }//GEN-LAST:event_downButtonActionPerformed
 
     private void upButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upButtonActionPerformed
         // TODO add your handling code here:
+        nbCoups+=1;
         this.grille.deplacementUp();
         repaint();
     }//GEN-LAST:event_upButtonActionPerformed
@@ -225,6 +244,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel GrilleJeu;
     private javax.swing.JButton downButton;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton leftButton;
     private javax.swing.JButton rightButton;

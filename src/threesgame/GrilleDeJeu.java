@@ -25,18 +25,22 @@ public class GrilleDeJeu {
     }
     
     public GrilleDeJeu AjoutCase(){
-        int valeur;
         Random random = new Random();
-        valeur=random.nextInt(3) + 1;  
-        
-        int ligneAleatoire = random.nextInt(matriceCellules.length);
-        int colonneAleatoire = random.nextInt(matriceCellules.length);
-        if (matriceCellules[ligneAleatoire][colonneAleatoire].valeur==0){
-            matriceCellules[ligneAleatoire][colonneAleatoire].valeur =valeur ;
-        }else{
-            AjoutCase();
+        int valeur = random.nextInt(3) + 1; // Pour obtenir des valeurs entre 1 et 3 inclus
+
+        boolean caseVideTrouvee = false;
+
+        while (!caseVideTrouvee) {
+            int ligneAleatoire = random.nextInt(matriceCellules.length-1);
+            int colonneAleatoire = random.nextInt(matriceCellules[0].length-1);
+
+            if (matriceCellules[ligneAleatoire][colonneAleatoire].valeur == 0) {
+                matriceCellules[ligneAleatoire][colonneAleatoire].valeur = valeur;
+                caseVideTrouvee = true;
+            }
         }
-        return this;
+
+    return this;
     }
     
     public GrilleDeJeu GrilleDepart(){
@@ -55,63 +59,81 @@ public class GrilleDeJeu {
     public GrilleDeJeu deplacementG(){
         for (int i=0; i<4; i++){
             for (int j=0; j<4; j++){
-                if (j==1){
+                if (j==0 || j==1 || j==2){
                     if (matriceCellules[i][j].valeur==matriceCellules[i][j+1].valeur){
-                        matriceCellules[i][j].valeur=2*matriceCellules[i][j].valeur;
-                        matriceCellules[i][j+1].valeur=matriceCellules[i][j+2].valeur;
-                    }  
-                } 
-                if (j==0){
-                    if (matriceCellules[i][j].valeur==matriceCellules[i][j+1].valeur){
-                        matriceCellules[i][j].valeur=2*matriceCellules[i][j].valeur;
-                        matriceCellules[i][j+1].valeur=matriceCellules[i][j+2].valeur;
+                        matriceCellules[i][j].valeur*=2;
+                        if (j==0){
+                            matriceCellules[i][j+1]=matriceCellules[i][j+2];
+                            matriceCellules[i][j+2]=matriceCellules[i][j+3];
+                            matriceCellules[i][j+3].valeur=0;
+                            
+                        }
+                        if (j==1){
+                            matriceCellules[i][j+1]=matriceCellules[i][j+2];
+                            matriceCellules[i][j+2].valeur=0;
+                        }
+                        if (j==2){
+                            matriceCellules[i][j+1].valeur=0;
+                        }
+                        
                     }
+                    if (matriceCellules[i][j].valeur==0){
+                        matriceCellules[i][j]=matriceCellules[i][j+1];
+                    }
+                    
+                    
+                    
                 }
                 if (j==3){
-                    if (matriceCellules[i][j-1].valeur==matriceCellules[i][j].valeur){
-                        matriceCellules[i][j-1].valeur=2*matriceCellules[i][j-1].valeur;
-                        matriceCellules[i][j].valeur=0;
+                    if (matriceCellules[i][j-1].valeur==0){
+                        matriceCellules[i][j-1]=matriceCellules[i][j];
                     }
+                    
                 }
-                if (j==2){
-                    if (matriceCellules[i][j].valeur==matriceCellules[i][j+1].valeur){
-                        matriceCellules[i][j].valeur=2*matriceCellules[i][j].valeur;
-                        matriceCellules[i][j+1].valeur=0;
-                    }
-                }
+                
             }
         }
-        
-        GrilleDeJeu grille=this.AjoutCase();
-        return grille;
+        AjoutCase();
+        return this;
     }
     
     public GrilleDeJeu deplacementD(){
         for (int i=0; i<4; i++){
             for (int j=0; j<4; j++){
-                if (j==1 || j==2){
-                    if (matriceCellules[i][j].valeur==matriceCellules[i][j+1].valeur){
-                        matriceCellules[i][j+1].valeur=2*matriceCellules[i][j+1].valeur;
-                        matriceCellules[i][j].valeur=matriceCellules[i][j-1].valeur;
-                    }  
-                } 
-                if (j==0){
-                    if (matriceCellules[i][j].valeur==matriceCellules[i][j+1].valeur){
-                        matriceCellules[i][j+1].valeur=2*matriceCellules[i][j+1].valeur;
-                        matriceCellules[i][j].valeur=0;
+                if (j==3 || j==1 || j==2){
+                    if (matriceCellules[i][j].valeur==matriceCellules[i][j-1].valeur){
+                        matriceCellules[i][j].valeur*=2;
+                        if (j==3){
+                            matriceCellules[i][j-1]=matriceCellules[i][j-2];
+                            matriceCellules[i][j-2]=matriceCellules[i][j-3];
+                            matriceCellules[i][j-3].valeur=0;
+                            
+                        }
+                        if (j==2){
+                            matriceCellules[i][j-1]=matriceCellules[i][j-2];
+                            matriceCellules[i][j-2].valeur=0;
+                        }
+                        if (j==1){
+                            matriceCellules[i][j-1].valeur=0;
+                        }
                         
-                    }
+                   
+                        if (matriceCellules[i][j].valeur==0){
+                            matriceCellules[i][j]=matriceCellules[i][j-1];
+                        }
+                    
+                    
                 }
-                if (j==3){
-                    if (matriceCellules[i][j-1].valeur==matriceCellules[i][j].valeur){
-                        matriceCellules[i][j].valeur=2*matriceCellules[i][j-1].valeur;
-                        matriceCellules[i][j-1].valeur=matriceCellules[i][j-2].valeur;
+                if (j==0){
+                    if (matriceCellules[i][j+1].valeur==0){
+                        matriceCellules[i][j+1]=matriceCellules[i][j];
                     }
                 }
             }
         }
-        GrilleDeJeu grille=this.AjoutCase();
-        return grille;
+        }
+        AjoutCase();
+        return this;
     }
     
     public GrilleDeJeu deplacementUp(){
@@ -119,9 +141,14 @@ public class GrilleDeJeu {
           for (int j=0; j<4; j++){
               if (i==1){
                   if (matriceCellules[i][j].valeur==matriceCellules[i+1][j].valeur){
-                      matriceCellules[i][j].valeur=2*matriceCellules[i+1][j].valeur;
-                      matriceCellules[i+1][j].valeur=matriceCellules[i+2][j].valeur;
-                     }
+                      matriceCellules[i][j].valeur=2*matriceCellules[i][j].valeur;
+                      matriceCellules[i+1][j]=matriceCellules[i+2][j];
+                  }else{
+                      if (matriceCellules[i][j].valeur==0){
+                          matriceCellules[i][j]=matriceCellules[i-1][j];
+                      }
+                  }
+                  
               }
               if (i==0){
                   if (matriceCellules[i+1][j].valeur==matriceCellules[i][j].valeur){
@@ -144,6 +171,7 @@ public class GrilleDeJeu {
         }
     
         }
+    AjoutCase();
     return this;
     }
 }
