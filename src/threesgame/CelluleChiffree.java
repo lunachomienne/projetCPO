@@ -14,6 +14,12 @@ public class CelluleChiffree {
     public CelluleChiffree(){
         valeur =0;
     }
+
+    @Override
+    public String toString() {
+        return "|" + valeur;
+    }
      
+    
     
 }

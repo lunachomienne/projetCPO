@@ -81,7 +81,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(443, 542));
 
         GrilleJeu.setBackground(new java.awt.Color(102, 204, 255));
-        GrilleJeu.setLayout(new java.awt.GridLayout());
+        GrilleJeu.setLayout(new java.awt.GridLayout(1, 0));
 
         downButton.setText("down");
         downButton.addActionListener(new java.awt.event.ActionListener() {
@@ -183,7 +183,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // TODO add your handling code here:
         nbCoups+=1;
         this.grille.deplacementG();
-        repaint();
+        GrilleJeu.repaint();
+        System.out.println(this.grille);
         
     }//GEN-LAST:event_leftButtonActionPerformed
 

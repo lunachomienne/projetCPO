@@ -36,6 +36,9 @@ public class CelluleGraphique extends JButton {
      if (celluleChiffreeAssociee.valeur!=0){
         this.setText(""+celluleChiffreeAssociee.valeur);
      }
+     else {
+         this.setText("");
+     }
  }
  
  
