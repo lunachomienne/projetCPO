@@ -24,7 +24,7 @@ public class GrilleDeJeu {
         }
     }
 
-    public GrilleDeJeu AjoutCase() {
+    public void AjoutCase() {
         Random random = new Random();
         int valeur = random.nextInt(3) + 1; // Pour obtenir des valeurs entre 1 et 3 inclus
 
@@ -40,7 +40,7 @@ public class GrilleDeJeu {
             }
         }
 
-        return this;
+       
     }
 
     public GrilleDeJeu GrilleDepart() {
@@ -48,15 +48,14 @@ public class GrilleDeJeu {
         Random random = new Random();
         valeur = random.nextInt(3) + 1;
 
-        for (int i = 0; i < 5; i++) {
-            int ligneAleatoire = random.nextInt(matriceCellules.length);
-            int colonneAleatoire = random.nextInt(matriceCellules[0].length);
-            matriceCellules[ligneAleatoire][colonneAleatoire].valeur = valeur;
+        for (int i=0; i<5; i++){
+            AjoutCase();
         }
         return this;
     }
 
     public GrilleDeJeu deplacementG() {
+        
         System.out.println(this);
         for (int i = 0; i < 4; i++) {
             int j = 0;
@@ -75,98 +74,100 @@ public class GrilleDeJeu {
                 matriceCellules[i][3].valeur = 0;
             }
             // sinon je n'ai pas décalé
+            if (matriceCellules[i][j].valeur==matriceCellules[i][j+1].valeur){
+                matriceCellules[i][j].valeur+=matriceCellules[i][j+1].valeur;
+                matriceCellules[i][j].valeur=0;
+            }
 
         }
-
-        /*
-                if (matriceCellules[i][j].valeur == 0) {
-                    matriceCellules[i][j] = matriceCellules[i][j + 1];
-                }*/
-
- /*
-                if (j==3){
-                    if (matriceCellules[i][j-1].valeur==0){
-                        matriceCellules[i][j-1]=matriceCellules[i][j];
-                    }
-         */
         System.out.println(this);
+        
         AjoutCase();
-
         return this;
     }
 
     public GrilleDeJeu deplacementD() {
+        
+        System.out.println(this);
         for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (j == 3 || j == 1 || j == 2) {
-                    if (matriceCellules[i][j].valeur == matriceCellules[i][j - 1].valeur) {
-                        matriceCellules[i][j].valeur *= 2;
-                        if (j == 3) {
-                            matriceCellules[i][j - 1] = matriceCellules[i][j - 2];
-                            matriceCellules[i][j - 2] = matriceCellules[i][j - 3];
-                            matriceCellules[i][j - 3].valeur = 0;
-
-                        }
-                        if (j == 2) {
-                            matriceCellules[i][j - 1] = matriceCellules[i][j - 2];
-                            matriceCellules[i][j - 2].valeur = 0;
-                        }
-                        if (j == 1) {
-                            matriceCellules[i][j - 1].valeur = 0;
-                        }
-
-                        if (matriceCellules[i][j].valeur == 0) {
-                            matriceCellules[i][j] = matriceCellules[i][j - 1];
-                        }
-
-                    }
-                    if (j == 0) {
-                        if (matriceCellules[i][j + 1].valeur == 0) {
-                            matriceCellules[i][j + 1] = matriceCellules[i][j];
-                        }
-                    }
-                }
+            int j = 1;
+            while (j < 4
+                    && matriceCellules[i][j].valeur != 0
+                    && matriceCellules[i][j].valeur != matriceCellules[i][j -1].valeur
+                    && matriceCellules[i][j].valeur + matriceCellules[i][j -1].valeur != 3) {
+                j++;
+            }
+            // je décale
+            for (int k = j; k < 4; k++) {
+                matriceCellules[i][k].valeur = matriceCellules[i][k-1].valeur;
+            }
+            // j'ai du décaler 
+            if (j <4 ){
+                matriceCellules[i][0].valeur = 0;
+            }
+            // sinon je n'ai pas décalé
+            if (matriceCellules[i][j].valeur==matriceCellules[i][j-1].valeur){
+                matriceCellules[i][j].valeur*=2;
             }
         }
+        System.out.println(this);
         AjoutCase();
+
         return this;
+        
+        
     }
 
     public GrilleDeJeu deplacementUp() {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (i == 1) {
-                    if (matriceCellules[i][j].valeur == matriceCellules[i + 1][j].valeur) {
-                        matriceCellules[i][j].valeur = 2 * matriceCellules[i][j].valeur;
-                        matriceCellules[i + 1][j] = matriceCellules[i + 2][j];
-                    } else {
-                        if (matriceCellules[i][j].valeur == 0) {
-                            matriceCellules[i][j] = matriceCellules[i - 1][j];
-                        }
-                    }
-
-                }
-                if (i == 0) {
-                    if (matriceCellules[i + 1][j].valeur == matriceCellules[i][j].valeur) {
-                        matriceCellules[i][j].valeur = 2 * matriceCellules[i][j].valeur;
-                        matriceCellules[i + 1][j].valeur = matriceCellules[i + 2][j].valeur;
-                    }
-                }
-                if (i == 2) {
-                    if (matriceCellules[i][j].valeur == matriceCellules[i + 1][j].valeur) {
-                        matriceCellules[i][j].valeur = 2 * matriceCellules[i][j].valeur;
-                        matriceCellules[i + 1][j].valeur = 0;
-                    }
-                }
-                if (i == 3) {
-                    if (matriceCellules[i][j].valeur == matriceCellules[i - 1][j].valeur) {
-                        matriceCellules[i - 1][j].valeur = 2 * matriceCellules[i][j].valeur;
-                        matriceCellules[i][j].valeur = 0;
-                    }
-                }
+        System.out.println(this);
+        for (int j = 0; j < 4; j++) {
+            int i = 0;
+            while (i < 3
+                    && matriceCellules[i][j].valeur != 0
+                    && matriceCellules[i][j].valeur != matriceCellules[i+1][j].valeur
+                    && matriceCellules[i][j].valeur + matriceCellules[i+1][j].valeur != 3) {
+                i++;
             }
+            // je décale
+            for (int k = i; k < 3; k++) {
+                matriceCellules[k][j].valeur = matriceCellules[k+1][j].valeur;
+            }
+            // j'ai du décaler 
+            if (i <3 ){
+                matriceCellules[3][j].valeur = 0;
+            }
+            // sinon je n'ai pas décalé
 
         }
+        System.out.println(this);
+
+        AjoutCase();
+        return this;
+    }
+    
+    public GrilleDeJeu deplacementDown(){
+        System.out.println(this);
+        for (int j = 0; j < 4; j++) {
+            int i = 1;
+            while (i < 4
+                    && matriceCellules[i][j].valeur != 0
+                    && matriceCellules[i][j].valeur != matriceCellules[i-1][j].valeur
+                    && matriceCellules[i][j].valeur + matriceCellules[i-1][j].valeur != 3) {
+                i++;
+            }
+            // je décale
+            for (int k = i; k < 4; k++) {
+                matriceCellules[k][j].valeur = matriceCellules[k-1][j].valeur;
+            }
+            // j'ai du décaler 
+            if (i <4 ){
+                matriceCellules[0][j].valeur = 0;
+            }
+            // sinon je n'ai pas décalé
+
+        }
+        System.out.println(this);
+
         AjoutCase();
         return this;
     }

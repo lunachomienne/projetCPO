@@ -31,7 +31,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         //CelluleChiffree cellule;
         int rand;
         this.grille= new GrilleDeJeu();
-        InitialiserPartie();
+        //InitialiserPartie();
         Random random = new Random();
         rand=random.nextInt(4) + 1;
         GrilleJeu.setLayout(new GridLayout(4, 4));
@@ -192,19 +192,24 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // TODO add your handling code here:
         nbCoups+=1;
         this.grille.deplacementD();
-        repaint();
+        GrilleJeu.repaint();
+        System.out.println(this.grille);
     }//GEN-LAST:event_rightButtonActionPerformed
 
     private void downButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downButtonActionPerformed
         // TODO add your handling code here:
         nbCoups+=1;
+        this.grille.deplacementDown();
+        GrilleJeu.repaint();
+        System.out.println(this.grille);
     }//GEN-LAST:event_downButtonActionPerformed
 
     private void upButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upButtonActionPerformed
         // TODO add your handling code here:
         nbCoups+=1;
         this.grille.deplacementUp();
-        repaint();
+        GrilleJeu.repaint();
+        System.out.println(this.grille);
     }//GEN-LAST:event_upButtonActionPerformed
 
     /**

@@ -8,13 +8,14 @@ package threesgame;
  *
  * @author lunac
  */
-public class FenetreJeu extends javax.swing.JPanel {
+public class FenetreJeu extends javax.swing.JFrame {
 
     /**
      * Creates new form FenetreJeu
      */
     public FenetreJeu() {
         initComponents();
+        
     }
 
     /**
@@ -54,6 +55,11 @@ public class FenetreJeu extends javax.swing.JPanel {
         NewPartie.setBackground(new java.awt.Color(102, 204, 255));
         NewPartie.setFont(new java.awt.Font("Bauhaus 93", 0, 18)); // NOI18N
         NewPartie.setText("Jouer");
+        NewPartie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewPartieActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -75,7 +81,7 @@ public class FenetreJeu extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(80, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -84,6 +90,13 @@ public class FenetreJeu extends javax.swing.JPanel {
                 .addGap(129, 129, 129))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void NewPartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewPartieActionPerformed
+        // TODO add your handling code here:
+        FenetrePrincipale f=new FenetrePrincipale();
+            f.setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_NewPartieActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
