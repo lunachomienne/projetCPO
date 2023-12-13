@@ -31,7 +31,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         //CelluleChiffree cellule;
         int rand;
         this.grille= new GrilleDeJeu();
-        //InitialiserPartie();
+        InitialiserPartie();
         Random random = new Random();
         rand=random.nextInt(4) + 1;
         GrilleJeu.setLayout(new GridLayout(4, 4));

@@ -16,7 +16,7 @@ public class ThreesGame {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        FenetreJeu f=new FenetreJeu();
+        FenetreBienvenue f=new FenetreBienvenue();
         f.setVisible(true);
     }
     
