@@ -4,6 +4,7 @@
  */
 package threesgame;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import static java.lang.Math.random;
 import java.util.Random;
@@ -35,10 +36,30 @@ public class CelluleGraphique extends JButton {
      super.paintComponent(g);
      if (celluleChiffreeAssociee.valeur!=0){
         this.setText(""+celluleChiffreeAssociee.valeur);
+        
+        if (celluleChiffreeAssociee.valeur == 0) {
+                setBackground(Color.WHITE);
+                
+        }
+        if (celluleChiffreeAssociee.valeur == 1 || celluleChiffreeAssociee.valeur == 2 ) {
+                setBackground(Color.decode("#FBEFF8"));
+                
+        }
+        if (celluleChiffreeAssociee.valeur == 3) {
+                setBackground(Color.decode("#F6CEEC"));
+                
+        }
+        if (celluleChiffreeAssociee.valeur == 6) {
+            setBackground(Color.decode("#F5A9E1"));
+        }
+        if (celluleChiffreeAssociee.valeur == 12) {
+            setBackground(Color.decode("#F781D8"));
+        }
      }
      else {
          this.setText("");
      }
+ 
  }
  
  

@@ -36,7 +36,7 @@ public class FenetreBienvenue extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("\tBienvenue dans ThreesGame! \n\nD'un principe similaire à celui de 2048, vous devez faire le \nplus grand nombre possible.\nA chaque tour de jeu, un nombre, 1, ou 2, apparait sur un \ndes bords disponibles de la grille.  Le but est de les associer,\net ensuite de fusionner les nombres avec ceux de la même \nvaleur pour les doubler.\n ");
+        jTextArea1.setText("Bienvenue dans ThreesGame! \n\nD'un principe similaire à celui de 2048, vous devez faire le \nplus grand nombre possible.\nA chaque tour de jeu, un nombre, 1, ou 2, apparait sur un \ndes bords disponibles de la grille.  Le but est de les associer,\net ensuite de fusionner les nombres avec ceux de la même \nvaleur pour les doubler.\n\n \t\t\tBonne chance !");
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 1, 36)); // NOI18N
@@ -58,15 +58,15 @@ public class FenetreBienvenue extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(179, 179, 179)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(168, 168, 168)
-                        .addComponent(jLabel1)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,8 +74,8 @@ public class FenetreBienvenue extends javax.swing.JFrame {
                 .addGap(93, 93, 93)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(119, Short.MAX_VALUE))
         );
