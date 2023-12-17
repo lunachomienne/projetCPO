@@ -13,6 +13,7 @@ import java.util.Random;
 public class GrilleDeJeu {
 
     public CelluleChiffree[][] matriceCellules;
+    int score=0;
 
     public GrilleDeJeu() {
 
@@ -40,7 +41,17 @@ public class GrilleDeJeu {
             }
         }
     }
-
+    
+    public int CalculScore(){
+        for (int i=0; i<4; i++){
+            for (int j=0; j<4; j++){
+                if (matriceCellules[i][j].valeur>3){
+                    score+=(matriceCellules[i][j].valeur*3);
+                }
+            }
+        }
+        return score;
+    }
     /**
      * Verifie si la grille est remplie ou non
      * @return un boolean, true si elle est remplie, false sinon
@@ -90,9 +101,14 @@ public class GrilleDeJeu {
                         
             // je dois fusionner, je fusionne
             if (j < 3 && ((matriceCellules[i][j].valeur==matriceCellules[i][j+1].valeur)|| (matriceCellules[i][j].valeur>0 && matriceCellules[i][j+1].valeur>0 && matriceCellules[i][j].valeur + matriceCellules[i][j + 1].valeur == 3))){
-                matriceCellules[i][j].valeur+=matriceCellules[i][j+1].valeur;
-                matriceCellules[i][j+1].valeur=0;
-                j++;
+                if ((matriceCellules[i][j].valeur==matriceCellules[i][j+1].valeur && matriceCellules[i][j].valeur==1) || (matriceCellules[i][j].valeur==matriceCellules[i][j+1].valeur && matriceCellules[i][j].valeur==2) ){
+                    j++;  
+                }
+                else {    
+                    matriceCellules[i][j].valeur+=matriceCellules[i][j+1].valeur;
+                    matriceCellules[i][j+1].valeur=0;
+                    j++;
+                }            
             }
             
             
@@ -130,9 +146,14 @@ public class GrilleDeJeu {
                         
             // je dois fusionner, je fusionne
             if (j > 0  && (matriceCellules[i][j].valeur==matriceCellules[i][j-1].valeur || (matriceCellules[i][j].valeur>0 && matriceCellules[i][j-1].valeur>0 && matriceCellules[i][j].valeur + matriceCellules[i][j - 1].valeur == 3))){
-                matriceCellules[i][j].valeur+=matriceCellules[i][j-1].valeur;
-                matriceCellules[i][j-1].valeur=0;
-                j--;
+                if ((matriceCellules[i][j].valeur==matriceCellules[i][j-1].valeur && matriceCellules[i][j].valeur==1) || (matriceCellules[i][j].valeur==matriceCellules[i][j-1].valeur && matriceCellules[i][j].valeur==2) ){
+                    j--;  
+                }
+                else {    
+                    matriceCellules[i][j].valeur+=matriceCellules[i][j-1].valeur;
+                    matriceCellules[i][j-1].valeur=0;
+                    j--;
+                }
             }
             
             
@@ -170,10 +191,14 @@ public class GrilleDeJeu {
                         
             // je dois fusionner, je fusionne
             if (i < 3 && (matriceCellules[i][j].valeur==matriceCellules[i+1][j].valeur || (matriceCellules[i][j].valeur>0 && matriceCellules[i+1][j].valeur>0 && matriceCellules[i][j].valeur + matriceCellules[i+1][j].valeur == 3))){
-                
+                if ((matriceCellules[i][j].valeur==matriceCellules[i+1][j].valeur && matriceCellules[i][j].valeur==1) || (matriceCellules[i][j].valeur==matriceCellules[i+1][j].valeur && matriceCellules[i][j].valeur==2) ){
+                    i++;  
+                }
+                else {    
                 matriceCellules[i][j].valeur+=matriceCellules[i+1][j].valeur;
                 matriceCellules[i+1][j].valeur=0;
                 i++;
+                }
             }
             
             
@@ -194,6 +219,9 @@ public class GrilleDeJeu {
         return this;
     }
     
+    public void ColorGrille(){
+        
+    }
     /**
      *réalise le deplacement vers le bas, deplace toutes les cases vers le bas quand c'est possible, additionne les valeurs qu'il faut.
      * @return une grille modifiée
@@ -211,11 +239,14 @@ public class GrilleDeJeu {
                         
             // je dois fusionner, je fusionne
             if (i > 0 && (matriceCellules[i][j].valeur==matriceCellules[i-1][j].valeur || (matriceCellules[i][j].valeur>0 && matriceCellules[i-1][j].valeur>0 && matriceCellules[i][j].valeur + matriceCellules[i-1][j].valeur == 3))){
-                while ((matriceCellules[i][j].valeur!=matriceCellules[i-1][j].valeur && (matriceCellules[i][j].valeur==1 || matriceCellules[i][j].valeur==2))){
-                matriceCellules[i][j].valeur+=matriceCellules[i-1][j].valeur;
-                matriceCellules[i-1][j].valeur=0;
-                i--;
-            }
+                if ((matriceCellules[i][j].valeur==matriceCellules[i-1][j].valeur && matriceCellules[i][j].valeur==1) || (matriceCellules[i][j].valeur==matriceCellules[i-1][j].valeur && matriceCellules[i][j].valeur==2) ){
+                    i--;  
+                }
+                else {    
+                    matriceCellules[i][j].valeur+=matriceCellules[i-1][j].valeur;
+                    matriceCellules[i-1][j].valeur=0;
+                    i--;
+                }
             }
             
             

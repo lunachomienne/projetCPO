@@ -11,8 +11,11 @@ package threesgame;
 public class CelluleChiffree {
     int valeur;
     
+    
     public CelluleChiffree(){
         valeur =0;
+        
+        
     }
 
     @Override

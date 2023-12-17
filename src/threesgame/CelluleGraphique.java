@@ -36,28 +36,50 @@ public class CelluleGraphique extends JButton {
      super.paintComponent(g);
      if (celluleChiffreeAssociee.valeur!=0){
         this.setText(""+celluleChiffreeAssociee.valeur);
-        
-        if (celluleChiffreeAssociee.valeur == 0) {
-                setBackground(Color.WHITE);
-                
-        }
+
         if (celluleChiffreeAssociee.valeur == 1 || celluleChiffreeAssociee.valeur == 2 ) {
                 setBackground(Color.decode("#FBEFF8"));
-                
         }
+        
         if (celluleChiffreeAssociee.valeur == 3) {
-                setBackground(Color.decode("#F6CEEC"));
-                
+                setBackground(Color.decode("#F6CEEC"));       
         }
+        
         if (celluleChiffreeAssociee.valeur == 6) {
-            setBackground(Color.decode("#F5A9E1"));
-        }
-        if (celluleChiffreeAssociee.valeur == 12) {
             setBackground(Color.decode("#F781D8"));
+        }
+        
+        if (celluleChiffreeAssociee.valeur == 12) {
+            setBackground(Color.decode("#FF00BF"));
+        }
+        
+        if (celluleChiffreeAssociee.valeur == 24) {
+            setBackground(Color.decode("#DF01D7"));
+        }
+        
+        if (celluleChiffreeAssociee.valeur == 48) {
+            setBackground(Color.decode("#A901DB"));
+        }
+        
+        if (celluleChiffreeAssociee.valeur == 96) {
+            setBackground(Color.decode("#7401DF"));
+        }
+        
+        if (celluleChiffreeAssociee.valeur == 192) {
+            setBackground(Color.decode("#3A01DF"));
+        }
+        
+        if (celluleChiffreeAssociee.valeur == 384) {
+            setBackground(Color.decode("#0174DF"));
+        }
+        
+        if (celluleChiffreeAssociee.valeur == 768) {
+            setBackground(Color.decode("#01DFD7"));
         }
      }
      else {
          this.setText("");
+         setBackground(Color.WHITE);
      }
  
  }

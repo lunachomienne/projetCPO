@@ -29,6 +29,8 @@ public class FenetreBienvenue extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        mode1 = new javax.swing.JButton();
+        modeChrono = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,12 +41,30 @@ public class FenetreBienvenue extends javax.swing.JFrame {
         jTextArea1.setText("Bienvenue dans ThreesGame! \n\nD'un principe similaire à celui de 2048, vous devez faire le \nplus grand nombre possible.\nA chaque tour de jeu, un nombre, 1, ou 2, apparait sur un \ndes bords disponibles de la grille.  Le but est de les associer,\net ensuite de fusionner les nombres avec ceux de la même \nvaleur pour les doubler.\n\n \t\t\tBonne chance !");
         jScrollPane1.setViewportView(jTextArea1);
 
-        jLabel1.setFont(new java.awt.Font("Bauhaus 93", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Bauhaus 93", 1, 48)); // NOI18N
         jLabel1.setText("Threes");
 
-        jButton1.setBackground(new java.awt.Color(102, 204, 255));
-        jButton1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
-        jButton1.setText("Jouer");
+        mode1.setBackground(new java.awt.Color(102, 204, 255));
+        mode1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
+        mode1.setText("Jouer (mode normal)");
+        mode1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mode1ActionPerformed(evt);
+            }
+        });
+
+        modeChrono.setBackground(new java.awt.Color(255, 153, 204));
+        modeChrono.setFont(new java.awt.Font("Bauhaus 93", 0, 18)); // NOI18N
+        modeChrono.setText("Jouer (mode Course contre la montre)");
+        modeChrono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modeChronoActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(255, 153, 204));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        jButton1.setText("?");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -56,38 +76,60 @@ public class FenetreBienvenue extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                        .addComponent(mode1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(modeChrono, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 40, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(147, 147, 147))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(191, 191, 191))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
+                .addGap(67, 67, 67)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(65, 65, 65)
+                .addComponent(mode1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(modeChrono)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void mode1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mode1ActionPerformed
         // TODO add your handling code here:
-        FenetrePrincipale f=new FenetrePrincipale();
+        FenetrePrincipale f=new FenetrePrincipale(false);
             f.setVisible(true);
             this.dispose();
+    }//GEN-LAST:event_mode1ActionPerformed
+
+    private void modeChronoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeChronoActionPerformed
+        // TODO add your handling code here:
+        FenetrePrincipale f=new FenetrePrincipale(true);
+            f.setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_modeChronoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        FenetreRegleCourseContreLaMontre f = new FenetreRegleCourseContreLaMontre();
+        f.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -130,5 +172,7 @@ public class FenetreBienvenue extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton mode1;
+    private javax.swing.JButton modeChrono;
     // End of variables declaration//GEN-END:variables
 }
