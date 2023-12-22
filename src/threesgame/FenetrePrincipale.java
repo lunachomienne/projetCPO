@@ -32,8 +32,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     GrilleDeJeu grille;
     int nbCoups=0;
     int score=0;
-    
-    
+    boolean sound=false;
+    Reglages f=new Reglages ();
     private int time = 60;
     
     
@@ -45,6 +45,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     public FenetrePrincipale(boolean mode) {
         
         initComponents();
+        
+        
         tempsRestant.setText("");
         if (mode==true){
             tempsRestant.setText("" + time);
@@ -112,6 +114,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         bindButtonToKey(upButton, KeyEvent.VK_UP);
         bindButtonToKey(downButton, KeyEvent.VK_DOWN);
         
+        
+        
     }
     
     private void bindButtonToKey(JButton button, int keyCode) {
@@ -129,7 +133,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
     }
-        
+       
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -159,8 +164,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         GrilleJeu.setLayout(new java.awt.GridLayout(1, 0));
 
         rightButton.setBackground(new java.awt.Color(102, 204, 255));
-        rightButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        rightButton.setText("-->");
+        rightButton.setFont(new java.awt.Font("Bauhaus 93", 0, 12)); // NOI18N
+        rightButton.setText("right");
         rightButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rightButtonActionPerformed(evt);
@@ -172,8 +177,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addComponent(rightButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addComponent(rightButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,8 +199,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
 
         leftButton.setBackground(new java.awt.Color(102, 204, 255));
-        leftButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        leftButton.setText("<--");
+        leftButton.setFont(new java.awt.Font("Bauhaus 93", 0, 12)); // NOI18N
+        leftButton.setText("left");
         leftButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 leftButtonActionPerformed(evt);
@@ -298,8 +304,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         nbCoups+=1;
         this.grille.deplacementG();
         GrilleJeu.repaint();     
-        if (grille.VerifGrille()==true && (grille==grille.deplacementG() && grille==grille.deplacementD() && grille==grille.deplacementDown() && grille==grille.deplacementUp())){
+        if (grille.VerifGrille()==true){
             score=grille.CalculScore();
+            
             FenetreDefaite f=new FenetreDefaite(nbCoups, score);
             f.setVisible(true);
             this.dispose();
@@ -315,7 +322,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         nbCoups+=1;
         this.grille.deplacementDown();
         GrilleJeu.repaint();
-        if (grille.VerifGrille()==true && (grille==grille.deplacementG() && grille==grille.deplacementD() && grille==grille.deplacementDown() && grille==grille.deplacementUp())){
+        
+        if (grille.VerifGrille()==true ){
             score=grille.CalculScore();
             FenetreDefaite f=new FenetreDefaite(nbCoups, score);
             f.setVisible(true);
@@ -331,7 +339,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         nbCoups+=1;
         this.grille.deplacementUp();
         GrilleJeu.repaint();
-        if (grille.VerifGrille()==true && (grille==grille.deplacementG() && grille==grille.deplacementD() && grille==grille.deplacementDown() && grille==grille.deplacementUp())){
+        if (grille.VerifGrille()==true ){
             score=grille.CalculScore();  
             FenetreDefaite f=new FenetreDefaite(nbCoups, score);
             f.setVisible(true);
@@ -345,6 +353,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void reglagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reglagesActionPerformed
         // TODO add your handling code here:
         
+        f.setVisible(true);
+        
         
     }//GEN-LAST:event_reglagesActionPerformed
 
@@ -353,7 +363,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         nbCoups+=1;
         this.grille.deplacementD();
         GrilleJeu.repaint();
-        if (grille.VerifGrille()==true && (grille==grille.deplacementG() && grille==grille.deplacementD() && grille==grille.deplacementDown() && grille==grille.deplacementUp())){
+        if (grille.VerifGrille()==true){
             score=grille.CalculScore();
             FenetreDefaite f=new FenetreDefaite(nbCoups, score);
             f.setVisible(true);
@@ -367,6 +377,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
+        SoundHandler.StopMusic();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

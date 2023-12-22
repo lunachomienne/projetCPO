@@ -35,7 +35,7 @@ public class FenetreRegleCourseContreLaMontre extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Le but de ce mode est de faire le plus de points possibles\nen moins de 60 secondes! \nArriverez-vous à faire plus de 200 points? Seul les vrais experts\npeuvent le faire....");
+        jTextArea1.setText("Le but de ce mode est de faire le plus de points possibles\nen moins de 60 secondes! \nArriverez-vous à faire plus de 500 points? Seul les vrais experts\npeuvent le faire....");
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
