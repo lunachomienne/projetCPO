@@ -23,6 +23,10 @@ public class SoundHandler {
     public static Clip clip;
     boolean Mute=false;
  
+    /**
+     *cette fonction prend un chemin vers une piste audio et la lit
+     * @param theme, 1 ou 2, qui va definir si on prend le path (l'audio) du mode dark ou light
+     */
     public static void RunMusic(int theme) {
         
         String path1 = "C:\\Users\\lunac\\OneDrive - Fondation EPF\\projet cpo\\ThreesGame\\src\\threesgame\\music\\dark";
@@ -38,7 +42,7 @@ public class SoundHandler {
         try {
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(path));
             
-            // Utilisez la variable statique de la classe au lieu de déclarer une nouvelle variable locale
+            // Utiliser la variable statique de la classe au lieu de déclarer une nouvelle variable locale
             clip = AudioSystem.getClip();
             
             try {
@@ -52,8 +56,11 @@ public class SoundHandler {
         }
     }
     
+    /**
+     *cette fonction arrête la musique en cours 
+     */
     public static void StopMusic() {
-        // Vérifiez si le clip est différent de null avant de l'arrêter
+        // Vérifier  si le clip est différent de null avant de l'arrêter
         if (clip != null && clip.isRunning()) {
             clip.stop();
             clip.flush();

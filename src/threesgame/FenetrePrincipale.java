@@ -36,7 +36,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     GrilleDeJeu grille;
     int nbCoups=0;
     int score=0;
-    boolean sound=false;
+    //boolean sound=false;
     Reglages f=new Reglages ();
     private int time = 60;
     int Theme=1;
@@ -47,18 +47,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         grille.GrilleDepart();
         
     }
-    public javax.swing.JLabel getMonJLabel() {
-        return background;
-    }
+    
     public FenetrePrincipale(boolean mode) {
         
-        initComponents();
-        setComponentZOrder(background, 0);
-            
+        initComponents();     
        
+        
         tempsRestant.setText("");
-        if (mode==true){
-            tempsRestant.setText("" + time);
+        if (mode==true){        //si le mode sélectionné est la Course contre la Montre:
+            tempsRestant.setText("" + time);                            // création d'un décompte 
             Timer timer = new Timer(1000, new ActionListener() {
             private boolean visible = true;
 
@@ -68,18 +65,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 tempsRestant.setText("" + time);
 
                 if (time < 15) {
-                    
+                    // dès qu'il reste 15 secondes 
                     Font policeNormale = tempsRestant.getFont();
                     visible = !visible;
-                    tempsRestant.setVisible(visible);
+                    tempsRestant.setVisible(visible);       // le JLabel du décompte clignote
                     tempsRestant.setFont(new Font(policeNormale.getName(), Font.BOLD, policeNormale.getSize()));
-                    tempsRestant.setForeground(Color.RED);
+                    tempsRestant.setForeground(Color.RED);      // le décompte est en rouge, en caractère gras
                 }
 
-                if (time <= 0) {
+                if (time <= 0) {        // dès que le temps est écoulé, la partie est finie
                     ((Timer)e.getSource()).stop();
                     score = grille.CalculScore();
-                    FenetreDefaite f = new FenetreDefaite(nbCoups, score);
+                    FenetreDefaite f = new FenetreDefaite(nbCoups, score); //une fenêtre défaite s'ouvre
                     f.setVisible(true);
                     FenetrePrincipale.this.dispose();
                 }
@@ -134,7 +131,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }
     
     
-    
+    // fonction permettant l'associationd'un bouton à une touche du clavier
     private void bindButtonToKey(JButton button, int keyCode) {
         
         InputMap inputMap = button.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
@@ -172,7 +169,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         reglages = new javax.swing.JButton();
         tempsRestant = new javax.swing.JLabel();
-        background = new javax.swing.JLabel();
         deco1 = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
@@ -254,14 +250,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         tempsRestant.setText("jLabel1");
         getContentPane().add(tempsRestant, new org.netbeans.lib.awtextra.AbsoluteConstraints(357, 42, 37, -1));
 
-        background.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                backgroundPropertyChange(evt);
-            }
-        });
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 560));
-        background.getAccessibleContext().setAccessibleParent(background);
-
         deco1.setText(" ");
         getContentPane().add(deco1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -269,12 +257,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
-        // TODO add your handling code here:
+        //actions effectuées lors du clic gauche (même principe pour tous les boutons de mouvements):
         
-        nbCoups+=1;
+        nbCoups+=1;  //le nb de coups s'incrémente de 1 à chaque mvt
         this.grille.deplacementG();
         GrilleJeu.repaint();     
-        if (grille.VerifGrille()==true){
+        if (grille.VerifGrille()==true){  // si la grille est pleine, on calcule le score total, ouvre la fenetre defaite, et ferme la partie
             score=grille.CalculScore();
             
             FenetreDefaite f=new FenetreDefaite(nbCoups, score);
@@ -321,16 +309,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }//GEN-LAST:event_upButtonActionPerformed
 
     private void reglagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reglagesActionPerformed
-        // TODO add your handling code here:
+        //actions lorsques la touche reglage est touchée:
         
-        f.setVisible(true);
-        Theme=f.mode;
-        
-        revalidate();
-        repaint();
-        
-        
-        
+        f.setVisible(true);   //ouverture d'une page d'options
+   
     }//GEN-LAST:event_reglagesActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -359,10 +341,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_reglagesComponentShown
 
-    private void backgroundPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_backgroundPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backgroundPropertyChange
-
     /**
      * @param args the command line arguments
      */
@@ -370,7 +348,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JPanel GrilleJeu;
-    public static javax.swing.JLabel background;
     public static javax.swing.JLabel deco1;
     public static javax.swing.JButton downButton;
     private javax.swing.JButton jButton1;

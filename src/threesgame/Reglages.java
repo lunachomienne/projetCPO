@@ -28,8 +28,8 @@ public class Reglages extends javax.swing.JFrame {
     /**
      * Creates new form Reglages
      */
-    boolean mute;
-    String path;
+   
+    
     int mode=1;
     public Reglages() {
         initComponents();
@@ -138,11 +138,12 @@ public class Reglages extends javax.swing.JFrame {
     }//GEN-LAST:event_quitterActionPerformed
 
     private void themeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themeActionPerformed
-        // TODO add your handling code here:
+        //selon le thème slectionné:
+        
         if (theme.isSelected()){
             mode=2;
             music.setSelected(false);
-            SoundHandler.StopMusic();
+            SoundHandler.StopMusic();       //des qu'un theme est choisi, la musique est arrêtée pour ne pas qu'elle recommence par dessus la nouvelle
             theme.setText("Thème sombre");
             music.setText("musique Off");
             FenetrePrincipale.GrilleJeu.setBackground(Color.decode("#0B0B61"));
@@ -162,7 +163,7 @@ public class Reglages extends javax.swing.JFrame {
         else{
             mode=1;
             music.setSelected(false);
-            SoundHandler.StopMusic();
+            SoundHandler.StopMusic();       
             theme.setText("Thème clair");
             music.setText("musique Off");
             FenetrePrincipale.GrilleJeu.setBackground(Color.decode("#00BFFF"));
