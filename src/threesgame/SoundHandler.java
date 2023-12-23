@@ -23,8 +23,18 @@ public class SoundHandler {
     public static Clip clip;
     boolean Mute=false;
  
-    public static void RunMusic(String path) {
-        path = "C:\\Users\\lunac\\OneDrive - Fondation EPF\\projet cpo\\ThreesGame\\src\\threesgame\\music\\backgroundMusic";
+    public static void RunMusic(int theme) {
+        
+        String path1 = "C:\\Users\\lunac\\OneDrive - Fondation EPF\\projet cpo\\ThreesGame\\src\\threesgame\\music\\dark";
+        String path2="C:\\Users\\lunac\\OneDrive - Fondation EPF\\projet cpo\\ThreesGame\\src\\threesgame\\music\\light";
+        
+        String path="";
+        if (theme==2){
+            path=path1;
+        }
+        if (theme==1){
+            path=path2;
+        }
         try {
             AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(path));
             

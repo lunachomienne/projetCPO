@@ -4,6 +4,7 @@
  */
 package threesgame;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -15,6 +16,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
 import static threesgame.SoundHandler.clip;
 
 /**
@@ -27,7 +29,8 @@ public class Reglages extends javax.swing.JFrame {
      * Creates new form Reglages
      */
     boolean mute;
-    
+    String path;
+    int mode=1;
     public Reglages() {
         initComponents();
         
@@ -45,13 +48,15 @@ public class Reglages extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         music = new javax.swing.JCheckBox();
         quitter = new javax.swing.JButton();
+        theme = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 36)); // NOI18N
         jLabel1.setText("Réglages");
 
-        music.setText("musique ?");
+        music.setFont(new java.awt.Font("Bauhaus 93", 0, 14)); // NOI18N
+        music.setText("musique  on/off");
         music.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 musicActionPerformed(evt);
@@ -67,10 +72,22 @@ public class Reglages extends javax.swing.JFrame {
             }
         });
 
+        theme.setFont(new java.awt.Font("Bauhaus 93", 0, 14)); // NOI18N
+        theme.setText("thème sombre/clair");
+        theme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                themeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 399, Short.MAX_VALUE)
+                .addComponent(quitter)
+                .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -78,12 +95,10 @@ public class Reglages extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addComponent(music, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(153, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(quitter)
-                .addGap(28, 28, 28))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(music, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(theme, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,9 +107,11 @@ public class Reglages extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(53, 53, 53)
                 .addComponent(music)
-                .addGap(44, 44, 44)
+                .addGap(31, 31, 31)
+                .addComponent(theme)
+                .addGap(100, 100, 100)
                 .addComponent(quitter)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,13 +119,16 @@ public class Reglages extends javax.swing.JFrame {
 
     private void musicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicActionPerformed
         // TODO add your handling code here:
-   
+        
         if (music.isSelected()){   
-          SoundHandler.RunMusic("C:\\Users\\lunac\\OneDrive - Fondation EPF\\projet cpo\\ThreesGame\\src\\threesgame\\music\\backgroundMusic");   
+            
+          SoundHandler.RunMusic(mode);   
+          music.setText("musique On");
         }
         
         else{
             SoundHandler.StopMusic();
+            music.setText("musique Off");
         }
     }//GEN-LAST:event_musicActionPerformed
 
@@ -116,6 +136,50 @@ public class Reglages extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_quitterActionPerformed
+
+    private void themeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themeActionPerformed
+        // TODO add your handling code here:
+        if (theme.isSelected()){
+            mode=2;
+            music.setSelected(false);
+            SoundHandler.StopMusic();
+            theme.setText("Thème sombre");
+            music.setText("musique Off");
+            FenetrePrincipale.GrilleJeu.setBackground(Color.decode("#0B0B61"));
+            FenetrePrincipale.upButton.setBackground(Color.decode("#0B0B61"));
+            FenetrePrincipale.downButton.setBackground(Color.decode("#0B0B61"));
+            FenetrePrincipale.leftButton.setBackground(Color.decode("#0B0B61"));
+            FenetrePrincipale.GrilleJeu.setForeground(Color.decode("#0B0B61"));
+            FenetrePrincipale.upButton.setForeground(Color.decode("#BDBDBD"));
+            FenetrePrincipale.downButton.setForeground(Color.decode("#BDBDBD"));
+            FenetrePrincipale.leftButton.setForeground(Color.decode("#BDBDBD"));
+            FenetrePrincipale.rightButton.setForeground(Color.decode("#BDBDBD"));
+            FenetrePrincipale.rightButton.setBackground(Color.decode("#0B0B61"));
+            FenetrePrincipale.reglages.setBackground(Color.decode("#B40404"));
+            FenetrePrincipale.deco1.setIcon(new ImageIcon("C:\\Users\\lunac\\OneDrive - Fondation EPF\\projet cpo\\ThreesGame\\src\\images\\dark 1 (1).jpg"));
+            
+        }   
+        else{
+            mode=1;
+            music.setSelected(false);
+            SoundHandler.StopMusic();
+            theme.setText("Thème clair");
+            music.setText("musique Off");
+            FenetrePrincipale.GrilleJeu.setBackground(Color.decode("#00BFFF"));
+            FenetrePrincipale.upButton.setBackground(Color.decode("#00BFFF"));
+            FenetrePrincipale.downButton.setBackground(Color.decode("#00BFFF"));
+            FenetrePrincipale.leftButton.setBackground(Color.decode("#00BFFF"));
+            FenetrePrincipale.rightButton.setBackground(Color.decode("#00BFFF"));
+            FenetrePrincipale.GrilleJeu.setForeground(Color.decode("#000000"));
+            FenetrePrincipale.upButton.setForeground(Color.decode("#000000"));
+            FenetrePrincipale.downButton.setForeground(Color.decode("#000000"));
+            FenetrePrincipale.leftButton.setForeground(Color.decode("#000000"));
+            FenetrePrincipale.rightButton.setForeground(Color.decode("#000000"));
+            FenetrePrincipale.reglages.setBackground(Color.decode("#FA58AC"));
+            FenetrePrincipale.deco1.setIcon(new ImageIcon("C:\\Users\\lunac\\OneDrive - Fondation EPF\\projet cpo\\ThreesGame\\src\\images\\light 1 (1).jpg"));
+            
+        }
+    }//GEN-LAST:event_themeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,5 +220,6 @@ public class Reglages extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JCheckBox music;
     private javax.swing.JButton quitter;
+    private javax.swing.JCheckBox theme;
     // End of variables declaration//GEN-END:variables
 }
